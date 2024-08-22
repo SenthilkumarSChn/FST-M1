@@ -1,4 +1,4 @@
-@activity5
+@activity6
 Feature: Data driven test with Example
 
 Scenario Outline: Testing with Data from Scenario
