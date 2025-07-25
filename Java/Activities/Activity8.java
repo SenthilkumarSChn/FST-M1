@@ -2,6 +2,7 @@ package Activities;
 
 
 
+@SuppressWarnings("serial")
 class CustomException extends Exception {
     private String message = null;
 
