@@ -1,134 +1,383 @@
 {
-  "provider": {
-    "name": "UserProvider"
-  },
   "consumer": {
     "name": "UserConsumer"
   },
   "interactions": [
     {
-      "description": "A request to create a user",
-      "request": {
-        "method": "POST",
-        "path": "/api/users",
-        "headers": {
-          "Content-Type": "application/json"
-        },
-        "body": {
-          "firstName": "Senthil",
-          "lastName": "K",
-          "id": 128991,
-          "email": "senthil@example.com"
-        },
-        "matchingRules": {
-          "body": {
-            "$.id": {
-              "matchers": [
-                {
-                  "match": "number"
-                }
-              ],
-              "combine": "AND"
-            },
-            "$.firstName": {
-              "matchers": [
-                {
-                  "match": "type"
-                }
-              ],
-              "combine": "AND"
-            },
-            "$.lastName": {
-              "matchers": [
-                {
-                  "match": "type"
-                }
-              ],
-              "combine": "AND"
-            },
-            "$.email": {
-              "matchers": [
-                {
-                  "match": "type"
-                }
-              ],
-              "combine": "AND"
-            }
-          }
+      "description": "A request to delete a user",
+      "key": "7616cf04",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "DELETE Request"
         }
+      ],
+      "request": {
+        "generators": {
+          "path": {
+            "dataType": "STRING",
+            "expression": "/api/users/{id}",
+            "type": "ProviderState"
+          }
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "DELETE",
+        "path": "/api/users/1"
       },
       "response": {
-        "status": 201,
+        "status": 204
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "A request to get all users",
+      "key": "8ec14958",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "GET ALL Request"
+        }
+      ],
+      "request": {
         "headers": {
-          "Content-Type": "application/json; charset=UTF-8"
+          "Content-Type": [
+            "application/json"
+          ]
         },
+        "method": "GET",
+        "path": "/api/users"
+      },
+      "response": {
         "body": {
-          "firstName": "Senthil",
-          "lastName": "K",
-          "id": 128991,
-          "email": "senthil@example.com"
+          "content": [
+            {
+              "email": "hansel@example.com",
+              "firstName": "Hansel",
+              "id": 2,
+              "lastName": ""
+            }
+          ],
+          "contentType": "application/json; charset=UTF-8",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json; charset=UTF-8"
+          ]
         },
         "matchingRules": {
           "body": {
-            "$.id": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "max": 2
+                }
+              ]
+            },
+            "$[*].email": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                },
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[*].firstName": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                },
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[*].id": {
+              "combine": "AND",
               "matchers": [
                 {
                   "match": "number"
+                },
+                {
+                  "match": "number"
                 }
-              ],
-              "combine": "AND"
+              ]
             },
-            "$.firstName": {
+            "$[*].lastName": {
+              "combine": "AND",
               "matchers": [
                 {
                   "match": "type"
-                }
-              ],
-              "combine": "AND"
-            },
-            "$.lastName": {
-              "matchers": [
+                },
                 {
                   "match": "type"
                 }
-              ],
-              "combine": "AND"
-            },
-            "$.email": {
-              "matchers": [
-                {
-                  "match": "type"
-                }
-              ],
-              "combine": "AND"
+              ]
             }
           },
           "header": {
             "Content-Type": {
+              "combine": "AND",
               "matchers": [
                 {
                   "match": "regex",
                   "regex": "application/json(;\\s?charset=[\\w\\-]+)?"
                 }
-              ],
-              "combine": "AND"
+              ]
             }
           }
-        }
+        },
+        "status": 200
       },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "A request to get a user",
+      "key": "948c560e",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "GET Request"
+        }
+      ],
+      "request": {
+        "generators": {
+          "path": {
+            "dataType": "STRING",
+            "expression": "/api/users/{id}",
+            "type": "ProviderState"
+          }
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "GET",
+        "path": "/api/users/1"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "email": "saahil@example.com",
+            "firstName": "Saahil",
+            "id": 1,
+            "lastName": "Sharma"
+          },
+          "contentType": "application/json; charset=UTF-8",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json; charset=UTF-8"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.email": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.firstName": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ]
+            },
+            "$.lastName": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {
+            "Content-Type": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "application/json(;\\s?charset=[\\w\\-]+)?"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "A request to create a user",
+      "key": "c09d9ed4",
+      "pending": false,
       "providerStates": [
         {
           "name": "POST Request"
         }
-      ]
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "email": "saahil@example.com",
+            "firstName": "Saahil",
+            "id": 123,
+            "lastName": "Sharma"
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.email": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.firstName": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ]
+            },
+            "$.lastName": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        },
+        "method": "POST",
+        "path": "/api/users"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "email": "saahil@example.com",
+            "firstName": "Saahil",
+            "id": 123,
+            "lastName": "Sharma"
+          },
+          "contentType": "application/json; charset=UTF-8",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json; charset=UTF-8"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.email": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.firstName": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ]
+            },
+            "$.lastName": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {
+            "Content-Type": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "application/json(;\\s?charset=[\\w\\-]+)?"
+                }
+              ]
+            }
+          }
+        },
+        "status": 201
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
     }
   ],
   "metadata": {
-    "pactSpecification": {
-      "version": "3.0.0"
-    },
     "pact-jvm": {
-      "version": "4.0.10"
+      "version": "4.6.17"
+    },
+    "pactSpecification": {
+      "version": "4.0"
     }
+  },
+  "provider": {
+    "name": "UserProvider"
   }
 }

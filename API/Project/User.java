@@ -20,7 +20,7 @@ public class User {
     private String email;
 
     public User() {
-
+        // TODO
     }
 
     public User(String firstName, String lastName, String email) {
