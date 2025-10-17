@@ -1,8 +1,9 @@
 @activity2
-Feature: Login Test
 
-Scenario: Testing Login
-    Given User is on Login page
-    When User enters username and password
-    Then Read the page title and confirmation message
-    And Close the Browser
+Feature: Activity to test the login feature
+
+  Scenario: Successful login
+    Given the user is on the login page
+    When the user enters username and password
+    And clicks the submit button
+    Then get the confirmation message and verify it

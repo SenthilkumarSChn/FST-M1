@@ -1,13 +1,10 @@
-@activity5
-Feature: Data driven test with Example
+@activity6
+Feature: To test input with Datatables
 
-Scenario Outline: Testing with Data from Scenario
-    Given User is on Login page
-    When User enters "<Usernames>" and "<Passwords>"
-    Then Read the page title and confirmation message
-    And Close the Browser
-    
-Examples:
-    | Usernames | Passwords |
-    | admin     | password  |
-    | adminUser | Password  |
+Scenario: Adding items to a to-do list
+	Given user is on the To-Do list page
+	When user adds the following tasks
+		| task1 |
+		| task2 |
+		| task3 |
+	Then they can see the task added to the list

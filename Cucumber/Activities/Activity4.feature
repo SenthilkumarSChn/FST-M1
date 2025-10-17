@@ -1,8 +1,8 @@
 @activity4
-Feature: Data driven test without Example
+Feature: Data driven test without Examples
 
-Scenario: Testing with Data from Scenario
-    Given User is on Login page
-    When User enters "admin" and "password"
-    Then Read the page title and confirmation message
-    And Close the Browser
+  Scenario: Testing with correct data from inputs
+    Given the user is on the login page
+    When the user enters "admin" and "password"
+    And clicks the submit button
+    Then get the confirmation text and verify message as "Welcome Back, Admin!"
